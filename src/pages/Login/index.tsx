@@ -1,13 +1,13 @@
-import { LockOutlined, MobileOutlined, UserOutlined, MailOutlined } from '@ant-design/icons';
+import { useState } from 'react';
+import { Button, Space, Tabs, TabsProps, message, theme } from 'antd';
 import {
 	LoginForm,
 	ProConfigProvider,
-	ProFormCaptcha,
-	ProFormCheckbox,
 	ProFormText,
 } from '@ant-design/pro-components';
-import { Button, Space, Tabs, TabsProps, message, theme } from 'antd';
-import { useState } from 'react';
+
+import { LockOutlined, UserOutlined, MailOutlined } from '@ant-design/icons';
+import { userLogin } from '../../api/user';
 
 type LoginType = 'register' | 'login';
 
@@ -20,15 +20,23 @@ function Login() {
 	const { token } = theme.useToken();
 	const [loginType, setLoginType] = useState<LoginType>('login');
 
+	const handleUserLogin = async (values: Dto.UserLoginDto) => {
+		const res = await userLogin(values)
+		if (res.data.token) {
+			localStorage.setItem('exam-token', res.data.token)
+			message.success('登录成功')
+		}
+	}
+
 	return (
 		<ProConfigProvider hashed={false}>
 			<div style={{ backgroundColor: token.colorBgContainer }}>
 				<LoginForm
 					title="Exam System"
-					onFinish={(values) => {
-						console.log(values);
-					}}
                     submitter={{ searchConfig: { submitText: loginType === 'login' ? '登录' : '注册' } }}
+					onFinish={(values: Dto.UserLoginDto) => {
+						handleUserLogin(values)
+					}}
 				>
 					<Tabs
 						centered

@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Button } from "antd";
 import { findExamList } from "../../api/exam";
+import ExamAddModal from "./ExamAddModal";
 
 function ExamList() {
     const [exams, setExams] = useState<Array<Res.ExamItem>>([])
+    const [addModalOpen, setAddModalOpen] = useState(false)
 
     async function getExamList() {
         const examRes = await findExamList()
@@ -17,7 +19,7 @@ function ExamList() {
     return <div>
         <div>
             <h2>exams list page</h2>
-            <Button type="primary">new exam</Button>
+            <Button type="primary" onClick={() => { setAddModalOpen(true) }}>new exam</Button>
             {
                 exams?.map((examItem) => {
                     return <div key={examItem.id}>
@@ -31,6 +33,10 @@ function ExamList() {
                 })
             }
         </div>
+        <ExamAddModal isOpen={addModalOpen} handleClose={() => {
+            setAddModalOpen(false)
+            getExamList()
+        }} />
     </div>;
 }
 

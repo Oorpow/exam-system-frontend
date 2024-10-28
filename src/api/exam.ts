@@ -5,3 +5,11 @@ export const findExamList = () => {
         url: `/exam/list`,
     })
 }
+
+export const createExam = (data: Dto.CreateExamDto) => {
+    return examReq.request<Res.CommonRes>({
+        url: '/exam',
+        method: 'POST',
+        data
+    })
+}

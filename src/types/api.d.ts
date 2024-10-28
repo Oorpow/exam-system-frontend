@@ -4,6 +4,10 @@ declare namespace Dto {
         password: string
         email: string
     }
+
+    type CreateExamDto = {
+        name: string
+    }
 }
 
 declare namespace Res {

@@ -49,11 +49,26 @@ class OpRequest {
 
 		this.instance.interceptors.response.use(
 			(res) => {
+				// 不断更新token
+				const newToken = res.headers['token']
+				
+				if (newToken) {
+					localStorage.setItem('exam-token', newToken)
+				}
 				return res.data;
 			},
 			(err) => {
-				message.error(err.response.data.message)
-				return Promise.reject(err.response.data.message);
+				if (!err.response) {
+					return Promise.reject(err.response)
+				}
+				const { data } = err.response
+				message.error(data.message)
+				if (data.statusCode === 401) {
+					setTimeout(() => {
+						window.location.href = '/login'
+					}, 1000)
+				}
+				return Promise.reject(data.message);
 			}
 		);
 	}
@@ -72,9 +87,14 @@ class OpRequest {
 	}
 }
 
-export const commonOpReq = new OpRequest({
+export const userReq = new OpRequest({
 	baseURL: 'http://localhost:3001',
 	timeout: 1000 * 10,
 });
+
+export const examReq = new OpRequest({
+	baseURL: 'http://localhost:3002',
+	timeout: 1000 * 10,
+})
 
 export default OpRequest;

@@ -1,7 +1,7 @@
-import { commonOpReq } from "../utils/request"
+import { userReq } from "../utils/request"
 
 export const userLogin = (data: Dto.UserLoginDto) => {
-    return commonOpReq.request<Res.CommonRes<Res.UserLoginRes>>({
+    return userReq.request<Res.CommonRes<Res.UserLoginRes>>({
         method: 'POST',
         url: '/user/login',
         data

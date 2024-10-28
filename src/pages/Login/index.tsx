@@ -8,6 +8,7 @@ import {
 
 import { LockOutlined, UserOutlined, MailOutlined } from '@ant-design/icons';
 import { userLogin } from '../../api/user';
+import { useNavigate } from 'react-router-dom';
 
 type LoginType = 'register' | 'login';
 
@@ -19,12 +20,16 @@ const items: TabsProps['items'] = [
 function Login() {
 	const { token } = theme.useToken();
 	const [loginType, setLoginType] = useState<LoginType>('login');
+	const navigate = useNavigate()
 
 	const handleUserLogin = async (values: Dto.UserLoginDto) => {
 		const res = await userLogin(values)
 		if (res.data.token) {
 			localStorage.setItem('exam-token', res.data.token)
 			message.success('登录成功')
+			setTimeout(() => {
+				navigate('/exams')
+			}, 1000);
 		}
 	}
 

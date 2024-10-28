@@ -13,7 +13,21 @@ declare namespace Res {
         data: T
     }
 
+    type DateFields = {
+        createTime: string
+        updateTime: string
+    }
+
     type UserLoginRes = {
         token: string
     }
+
+    type ExamItem = {
+        id: number
+        name: string
+        isPublish: boolean
+        isDelete: boolean
+        content: string
+        createUserId: number
+    } & DateFields
 }

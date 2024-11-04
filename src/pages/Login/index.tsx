@@ -1,14 +1,13 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button, Space, Tabs, TabsProps, message, theme } from 'antd';
 import {
 	LoginForm,
 	ProConfigProvider,
 	ProFormText,
 } from '@ant-design/pro-components';
-
 import { LockOutlined, UserOutlined, MailOutlined } from '@ant-design/icons';
-import { userLogin } from '../../api/user';
-import { useNavigate } from 'react-router-dom';
+import { userLogin } from '@/api/user';
 
 type LoginType = 'register' | 'login';
 

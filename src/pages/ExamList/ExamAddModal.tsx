@@ -1,6 +1,6 @@
 import { Modal, Form, Input, message } from 'antd'
 import { useForm } from 'antd/es/form/Form';
-import { createExam } from '../../api/exam';
+import { createExam } from '@/api/exam';
 
 interface Props {
     isOpen: boolean

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, message } from "antd";
-import { deleteExam, findExamList, publishExamOrNot } from "../../api/exam";
+import { deleteExam, findExamList, publishExamOrNot } from "@/api/exam";
 import ExamAddModal from "./ExamAddModal";
 
 function ExamList() {

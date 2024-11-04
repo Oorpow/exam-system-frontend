@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Button } from "antd";
-import { findExamList } from "../../api/exam";
+import { Button, message } from "antd";
+import { deleteExam, findExamList, publishExamOrNot } from "../../api/exam";
 import ExamAddModal from "./ExamAddModal";
 
 function ExamList() {
@@ -10,6 +10,26 @@ function ExamList() {
     async function getExamList() {
         const examRes = await findExamList()
         setExams(examRes.data)
+    }
+
+    async function handleChangePubStatus(id: number, isPublish: boolean) {
+        try {
+            const res = await publishExamOrNot({ id, isPublish: !isPublish })
+            message.success('publish status update success')
+            getExamList()
+        } catch (e) {
+            message.error('publish status update error')
+        }
+    }
+
+    async function handleDeleteExam(id: number) {
+        try {
+            await deleteExam({ id })
+            message.success('delete exam success')
+            getExamList()
+        } catch (e) {
+            message.error('delete exam error')
+        }
     }
 
     useEffect(() => {
@@ -25,9 +45,9 @@ function ExamList() {
                     return <div key={examItem.id}>
                         <h3>name: { examItem.name }</h3>
                         <div>
-                            <Button color="default" variant="solid">{examItem.isPublish ? 'stop' : 'publish'}</Button>
+                            <Button color="default" variant="solid" onClick={() => handleChangePubStatus(examItem.id, examItem.isPublish)}>{examItem.isPublish ? 'stop pub' : 'publish'}</Button>
                             <Button color="primary" variant="solid">edit</Button>
-                            <Button color="danger" variant="solid">delete</Button>
+                            <Button color="danger" variant="solid" onClick={() => handleDeleteExam(examItem.id)}>delete</Button>
                         </div>
                     </div>
                 })

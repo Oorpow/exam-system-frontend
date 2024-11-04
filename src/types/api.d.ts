@@ -8,6 +8,15 @@ declare namespace Dto {
     type CreateExamDto = {
         name: string
     }
+
+    type PublishOrNotExamDto = {
+        id: number
+        isPublish: boolean
+    }
+
+    type RemoveExamDto = {
+        id: number
+    }
 }
 
 declare namespace Res {

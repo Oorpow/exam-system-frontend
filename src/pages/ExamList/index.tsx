@@ -7,8 +7,8 @@ function ExamList() {
     const [exams, setExams] = useState<Array<Res.ExamItem>>([])
     const [addModalOpen, setAddModalOpen] = useState(false)
 
-    async function getExamList() {
-        const examRes = await findExamList()
+    async function getExamList(bin?: boolean) {
+        const examRes = await findExamList(bin)
         setExams(examRes.data)
     }
 
@@ -40,6 +40,7 @@ function ExamList() {
         <div>
             <h2>exams list page</h2>
             <Button type="primary" onClick={() => { setAddModalOpen(true) }}>new exam</Button>
+            <Button onClick={() => getExamList(true)}>recycle bin</Button>
             {
                 exams?.map((examItem) => {
                     return <div key={examItem.id}>

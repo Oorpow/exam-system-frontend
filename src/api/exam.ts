@@ -1,8 +1,8 @@
-import { examReq } from "../utils/request"
+import { examReq } from "@/utils/request"
 
-export const findExamList = () => {
+export const findExamList = (bin = false) => {
     return examReq.request<Res.CommonRes<Res.ExamItem[]>>({
-        url: `/exam/list`,
+        url: `/exam/list?bin=${bin}`,
     })
 }
 

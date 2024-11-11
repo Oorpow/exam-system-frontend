@@ -7,6 +7,7 @@ import Login from './pages/Login'
 import ExamList from './pages/ExamList'
 import { Edit } from './pages/Edit'
 import Exam from './pages/Exam'
+import Score from './pages/Score'
 
 const routes: RouteObject[] = [
   {
@@ -17,17 +18,25 @@ const routes: RouteObject[] = [
     path: '/login',
     element: <Login />
   },
+  // 考卷列表
   {
     path: '/exams',
     element: <ExamList />
   },
+  // 考试页
   {
     path: '/exam/:id',
     element: <Exam />
   },
+  // 编辑页
   {
     path: '/edit/:examId',
     element: <Edit />
+  },
+  // 成绩页
+  {
+    path: '/score/:id',
+    element: <Score />
   }
 ]
 

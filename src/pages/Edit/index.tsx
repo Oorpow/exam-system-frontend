@@ -18,7 +18,7 @@ import TextArea from 'antd/lib/input/TextArea';
 import { useForm } from 'antd/lib/form/Form';
 import { findExamById, saveExam } from '@/api/exam';
 
-type Question = {
+export type Question = {
 	id: number;
 	question: string;
 	type: 'radio' | 'checkbox' | 'input';

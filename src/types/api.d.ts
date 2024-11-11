@@ -22,6 +22,11 @@ declare namespace Dto {
         id: number
         content: string
     }
+
+    type CreateAnswerDto = {
+        examId: number;
+        content: string;
+    }
 }
 
 declare namespace Res {

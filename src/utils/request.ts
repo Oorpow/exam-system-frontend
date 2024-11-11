@@ -97,4 +97,9 @@ export const examReq = new OpRequest({
 	timeout: 1000 * 10,
 })
 
+export const answerReq = new OpRequest({
+	baseURL: 'http://localhost:3003',
+	timeout: 1000 * 10
+})
+
 export default OpRequest;

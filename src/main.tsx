@@ -6,6 +6,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import Login from './pages/Login'
 import ExamList from './pages/ExamList'
 import { Edit } from './pages/Edit'
+import Exam from './pages/Exam'
 
 const routes: RouteObject[] = [
   {
@@ -19,6 +20,10 @@ const routes: RouteObject[] = [
   {
     path: '/exams',
     element: <ExamList />
+  },
+  {
+    path: '/exam/:id',
+    element: <Exam />
   },
   {
     path: '/edit/:examId',

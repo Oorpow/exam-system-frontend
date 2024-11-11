@@ -1,5 +1,19 @@
 import { examReq } from "@/utils/request"
 
+export const findExamById = (id: number) => {
+    return examReq.request<Res.CommonRes<Res.ExamItem>>({
+        url: `/exam/${id}`
+    })
+}
+
+export const saveExam = (data: Dto.SaveExamDto) => {
+    return examReq.request<Res.CommonRes>({
+        url: `/exam/save`,
+        method: 'POST',
+        data
+    })
+}
+
 export const findExamList = (bin = false) => {
     return examReq.request<Res.CommonRes<Res.ExamItem[]>>({
         url: `/exam/list?bin=${bin}`,

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, message } from "antd";
 import { deleteExam, findExamList, publishExamOrNot } from "@/api/exam";
 import ExamAddModal from "./ExamAddModal";
+import { Link } from "react-router-dom";
 
 function ExamList() {
     const [exams, setExams] = useState<Array<Res.ExamItem>>([])
@@ -47,7 +48,9 @@ function ExamList() {
                         <h3>name: { examItem.name }</h3>
                         <div>
                             <Button color="default" variant="solid" onClick={() => handleChangePubStatus(examItem.id, examItem.isPublish)}>{examItem.isPublish ? 'stop pub' : 'publish'}</Button>
-                            <Button color="primary" variant="solid">edit</Button>
+                            <Button color="primary" variant="solid">
+                                <Link to={`/edit/${examItem.id}`}>edit</Link>
+                            </Button>
                             <Button color="danger" variant="solid" onClick={() => handleDeleteExam(examItem.id)}>delete</Button>
                         </div>
                     </div>

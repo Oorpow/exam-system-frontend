@@ -17,6 +17,11 @@ declare namespace Dto {
     type RemoveExamDto = {
         id: number
     }
+
+    type SaveExamDto = {
+        id: number
+        content: string
+    }
 }
 
 declare namespace Res {
